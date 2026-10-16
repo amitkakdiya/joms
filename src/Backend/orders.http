@@ -1,0 +1,87 @@
+@baseUrl = http://localhost:5000
+@customerToken = replace-with-customer-jwt
+@adminToken = replace-with-admin-jwt
+@orderId = 1
+@cadUserId = 3
+@productionUserId = 4
+@billingUserId = 5
+@cadToken = replace-with-cad-jwt
+@productionToken = replace-with-production-jwt
+@billingToken = replace-with-billing-jwt
+
+### List orders (Customer sees owned orders; Admin sees all)
+GET {{baseUrl}}/api/orders
+Authorization: Bearer {{customerToken}}
+
+### Submit an order as Customer (active Admin users receive notifications)
+POST {{baseUrl}}/api/orders/submit
+Authorization: Bearer {{customerToken}}
+Content-Type: application/json
+
+{
+  "description": "Custom gold ring, size 7"
+}
+
+### List active CAD users (Admin only)
+GET {{baseUrl}}/api/orders/cad-users
+Authorization: Bearer {{adminToken}}
+
+### Assign a submitted order to CAD (CAD user and owning customer are notified)
+POST {{baseUrl}}/api/orders/{{orderId}}/assign-cad
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "cadUserId": {{cadUserId}}
+}
+
+### List active production users (Admin only)
+GET {{baseUrl}}/api/orders/production-users
+Authorization: Bearer {{adminToken}}
+
+### CAD submits completed design for customer approval
+POST {{baseUrl}}/api/orders/{{orderId}}/design/submit
+Authorization: Bearer {{cadToken}}
+
+### Customer approves design
+POST {{baseUrl}}/api/orders/{{orderId}}/design/approve
+Authorization: Bearer {{customerToken}}
+Content-Type: application/json
+
+{
+  "comment": null
+}
+
+### Admin assigns approved order to Production
+POST {{baseUrl}}/api/orders/{{orderId}}/assign-production
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "userId": {{productionUserId}}
+}
+
+### Production advances one stage (BagGenerated, Production, Casting, Rhodium, FinishBag)
+POST {{baseUrl}}/api/orders/{{orderId}}/production/advance
+Authorization: Bearer {{productionToken}}
+
+### List active Billing users (Admin or Production)
+GET {{baseUrl}}/api/orders/billing-users
+Authorization: Bearer {{productionToken}}
+
+### Production assigns finished order to Billing
+POST {{baseUrl}}/api/orders/{{orderId}}/production/assign-billing
+Authorization: Bearer {{productionToken}}
+Content-Type: application/json
+
+{
+  "userId": {{billingUserId}}
+}
+
+### Billing completes final billing
+POST {{baseUrl}}/api/orders/{{orderId}}/billing/complete
+Authorization: Bearer {{billingToken}}
+
+### Billing marks order dispatched
+POST {{baseUrl}}/api/orders/{{orderId}}/dispatch
+Authorization: Bearer {{billingToken}}

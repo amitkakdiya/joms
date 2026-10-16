@@ -1,0 +1,23 @@
+@baseUrl = http://localhost:5000
+@username = replace-with-your-database-username
+@password = replace-with-your-password
+
+### Log in with a database user
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "{{username}}",
+  "password": "{{password}}"
+}
+
+### Create a local development account (Development environment only)
+POST {{baseUrl}}/api/dev/users
+Content-Type: application/json
+
+{
+  "username": "local-customer",
+  "password": "Replace-with-a-long-password-123!",
+  "displayName": "Local Customer",
+  "role": "Customer"
+}

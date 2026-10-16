@@ -1,0 +1,5 @@
+IF DB_ID(N'jomsdb') IS NULL
+BEGIN
+    CREATE DATABASE [jomsdb];
+END;
+GO

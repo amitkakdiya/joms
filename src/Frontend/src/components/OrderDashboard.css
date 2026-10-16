@@ -1,0 +1,163 @@
+.orders-card {
+  margin-top: 24px;
+  padding: 27px 30px;
+  border: 1px solid #e4e6ed;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 25px rgb(26 35 64 / 4%);
+}
+
+.orders-heading,
+.order-title-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.orders-heading h2 {
+  margin: 5px 0 0;
+  color: #20253a;
+  font-size: 20px;
+}
+
+.order-create-form {
+  display: grid;
+  gap: 10px;
+  margin: 23px 0;
+  padding: 18px;
+  border: 1px solid #eceef4;
+  border-radius: 10px;
+  background: #fafbfe;
+}
+
+.order-create-form label {
+  color: #51586c;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.order-create-form textarea,
+.order-assign select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d9dce6;
+  border-radius: 8px;
+  outline: none;
+  color: #252a3c;
+  font: inherit;
+  font-size: 13px;
+}
+
+.order-create-form textarea:focus,
+.order-assign select:focus {
+  border-color: #535db1;
+  box-shadow: 0 0 0 3px rgb(83 93 177 / 12%);
+}
+
+.order-create-form .primary-button {
+  justify-self: start;
+}
+
+.orders-muted,
+.orders-empty {
+  margin: 8px 0 0;
+  color: #7b8192;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.orders-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 19px;
+}
+
+.order-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 17px;
+  border: 1px solid #eceef4;
+  border-radius: 10px;
+}
+
+.order-title-line {
+  justify-content: flex-start;
+}
+
+.order-title-line h3 {
+  margin: 0;
+  color: #252a3c;
+  font-size: 14px;
+}
+
+.order-status {
+  padding: 4px 8px;
+  border-radius: 99px;
+  background: #eef0fa;
+  color: #4b56a9;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.order-description {
+  margin: 9px 0 0;
+  color: #42495d;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.order-actions {
+  display: flex;
+  flex: 0 0 280px;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.order-actions select {
+  min-width: 145px;
+  max-width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #d9dce6;
+  border-radius: 8px;
+  background: #fff;
+  color: #252a3c;
+  font: inherit;
+  font-size: 12px;
+}
+
+.order-actions .primary-button,
+.order-actions .secondary-button {
+  padding: 0 11px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 650px) {
+  .orders-card {
+    padding: 22px 18px;
+  }
+
+  .order-row,
+  .order-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .order-actions {
+    flex-basis: auto;
+  }
+}
